@@ -16,7 +16,7 @@ flight.reset_index(level=0, inplace = True)
 source = str(input("Enter source\n")).upper()
 destination = str(input("Enter destination\n")).upper()
 
-s = []
+s = []g
 for i in range(0,train.shape[0]):
     b = []
     if train.iloc[i,12] == source:
