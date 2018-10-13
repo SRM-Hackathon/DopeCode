@@ -61,5 +61,3 @@ def show(request):
         p = list(report.iloc[i,:])
         t.append(p)
     return render(request,"home/result.html",{"t":t})
-    
-
