@@ -52,7 +52,14 @@ def show(request):
             if flight.iloc[i,10] == d:
                 b.append(flight.iloc[i,:])
                 g.append(b)
-    print(k)
-    return render(request,"home/result.html",{"k":k})
+    report = pd.DataFrame()
+    for q in k:
+        r = pd.DataFrame(q)
+        report = pd.concat([report,r], axis = 0)
+    t = []
+    for i in range(0,len(report)):
+        p = list(report.iloc[i,:])
+        t.append(p)
+    return render(request,"home/result.html",{"t":t})
     
 

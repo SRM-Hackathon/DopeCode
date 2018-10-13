@@ -14,7 +14,7 @@
 <body>
 	<h1>Train Reports</h1><hr/>
 	HOME Page
-	<a href="{% url 'Trainreports:showReports' %}">Show Reports</a>
+	<a href="#">Show Reports</a>
 	<div class="container-fluid">
 		<h2>Trains Report List</h2><hr/>
 		<div class="container">
@@ -22,35 +22,35 @@
 				<option></option>
 			</select><br/>
 		</div>
-		{% if k != null %}
+		{% if t != null %}
 			<div class="table-responsive">
 				<table class="table table-bordered">
 					<tr class="bg-primary">
 						<th>Train Number</th>
 						<th>Train Name</th>
 						<th>Source station Name</th>
-						<th>Destination name</th>
-						<th>Day</th>
-						<th>Arrival time</th>
-						<th>Departure time</th>
-						<th>SL</th>
-						<th>1A</th>
+						<th>Dereportstination name</th>
+						<th>Dareporty</th>
+						<th>Arreportrival time</th>
+						<th>Dereportparture time</th>
+						<th>SLreport</th>
+						<th>1Areport</th>
 						<th>2A</th>
 						<th>3A</th>
 					</tr>
-					{% for report in k %}
+					{% for a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15,a16 in t %}
 						<tr>
-							<td>{{report[15]}}</td>
-							<td>{{report[13]}}</td>
-							<td>{{report[12]}}</td>
-							<td>{{report[7]}}</td>
-							<td>{{report[5]}}</td>
-							<td>{{report[4]}}</td>
-							<td>{{report[14]}}</td>
-							<td>{{report[10]}}</td>
-							<td>{{report[1]}}</td>
-							<td>{{report[2]}}</td>
-							<td>{{report[3]}}</td>
+							<td>{{a16}}</td>
+							<td>{{a14}}</td>
+							<td>{{a13}}</td>
+							<td>{{a8}}</td>
+							<td>{{a6}}</td>
+							<td>{{a5}}</td>
+							<td>{{a15}}</td>
+							<td>{{a11}}</td>
+							<td>{{a2}}</td>
+							<td>{{a3}}</td>
+							<td>{{a4}}</td>
 						</tr>
 					{% endfor %}
 				</table>
@@ -61,7 +61,7 @@
 	</div>
 
 	<div>
-		<form action="{% url 'Trainreports:f-data'%}" method="POST" >
+		<form action="#" method="POST" >
 			{% csrf_token %}
 			<input type="text" name='trainName'/>
 			<input type="text" name='trainNumber'/>
