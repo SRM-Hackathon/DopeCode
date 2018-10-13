@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Train Reports</title>	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/static/bootstrap/css/bootstrap-theme.min.css">
+
+	<script src="/static/scripts/jquery-3.3.1.min.js"></script>
+	<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<h1>Train Reports</h1><hr/>
+	HOME Page
+	<a href="{% url 'Trainreports:showReports' %}">Show Reports</a>
+	<div class="container-fluid">
+		<h2>Trains Report List</h2><hr/>
+		<div class="container">
+			<select class="form-control">
+				<option></option>
+			</select><br/>
+		</div>
+		{% if k != null %}
+			<div class="table-responsive">
+				<table class="table table-bordered">
+					<tr class="bg-primary">
+						<th>Train Number</th>
+						<th>Train Name</th>
+						<th>Source station Name</th>
+						<th>Destination name</th>
+						<th>Day</th>
+						<th>Arrival time</th>
+						<th>Departure time</th>
+						<th>SL</th>
+						<th>1A</th>
+						<th>2A</th>
+						<th>3A</th>
+					</tr>
+					{% for report in k %}
+						<tr>
+							<td>{{report[15]}}</td>
+							<td>{{report[13]}}</td>
+							<td>{{report[12]}}</td>
+							<td>{{report[7]}}</td>
+							<td>{{report[5]}}</td>
+							<td>{{report[4]}}</td>
+							<td>{{report[14]}}</td>
+							<td>{{report[10]}}</td>
+							<td>{{report[1]}}</td>
+							<td>{{report[2]}}</td>
+							<td>{{report[3]}}</td>
+						</tr>
+					{% endfor %}
+				</table>
+			</div>
+		{% else %}
+			<div>SomeThing WentWrong..!</div>
+		{% endif %}
+	</div>
+
+	<div>
+		<form action="{% url 'Trainreports:f-data'%}" method="POST" >
+			{% csrf_token %}
+			<input type="text" name='trainName'/>
+			<input type="text" name='trainNumber'/>
+			<input type="submit" value="GetDetails"/>
+		</form>
+	</div>
+</body>
+</html>

@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from .forms import PostForm
 from .models import Post
 import json
-import pandas
+import pandas as pd
 
 # Create your views here.
 def post_list(request):
@@ -27,7 +27,32 @@ def show(request):
     #our algorithm
     s = k.source
     d = k.dest
-
-    return HttpResponse("<h1>success</h1>")
+    file0 = '/home/pavan/DopeCode/mmtcfinal/home/static/FINALFLIGHTTEST.json'
+    file1 = '/home/pavan/DopeCode/mmtcfinal/home/static/FINALTRAINTEST.json'
+    with open(file0) as flight_file:
+        dict_flight = json.load(flight_file)
+    flight = pd.DataFrame.from_dict(dict_flight, orient='columns')
+    flight.reset_index(level=0, inplace = True)
+    with open(file1) as train_file:
+        dict_train = json.load(train_file)
+    # converting json dataset from dictionary to dataframe
+    train = pd.DataFrame.from_dict(dict_train, orient='columns')
+    train.reset_index(level=0, inplace=True)
+    k = []
+    for i in range(0,train.shape[0]):
+        b = []
+        if train.iloc[i,12] == s.upper():
+            if train.iloc[i,7] == d.upper():
+                b.append(train.iloc[i,:])
+                k.append(b)
+    g = []
+    for i in range(0,flight.shape[0]):
+        b = []
+        if flight.iloc[i,7] == s:
+            if flight.iloc[i,10] == d:
+                b.append(flight.iloc[i,:])
+                g.append(b)
+    print(k)
+    return render(request,"home/result.html",{"k":k})
     
 
