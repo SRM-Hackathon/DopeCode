@@ -1,10 +1,20 @@
-{% extends 'home/base2.html' %}
-
+{% extends 'home/base.html' %}
 {%block content %}
-
+{% load staticfiles %}
+<style>
+	*{
+		background-color: antiquewhite;
+	}
+	.post-form{
+		width: 95%;
+		margin: 10px 450px;
+		
+	}
+</style>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <form method="POST" class="post-form">{% csrf_token %}
 	{{ form.as_p }}
-	<button type="submit" class="save btn btn-default">Save</button>
+	<button type="submit" class="save btn btn-default" style="color:brown; background-color: aqua; " >Save</button>
 </form>						
 
 {% endblock %}
